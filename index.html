@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Birthday Wonderland 💗</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--p:#ff3f78;--p2:#ff87a8;--pink:#ffd6e2;--dark:#8d164a}
+html,body{width:100%;height:auto;overflow-y:auto;overflow-x:hidden}
+body{font-family:Poppins,sans-serif;color:white;background:#ffb5ca}
+#world{position:fixed;inset:0;overflow:hidden;background:radial-gradient(circle at 50% 35%,#fff0f5 0,#ffc2d5 27%,#ff78a1 65%,#ed326d 100%);perspective:1000px}
+#world:before{content:"";position:absolute;inset:-30%;background:linear-gradient(115deg,transparent 45%,#fff5 49%,transparent 53%);animation:shine 8s linear infinite}
+@keyframes shine{to{transform:translateX(80%) rotate(4deg)}}
+.glow{position:absolute;width:55vw;height:55vw;border-radius:50%;left:50%;top:42%;transform:translate(-50%,-50%);background:#fff5;filter:blur(70px);animation:breath 4s ease-in-out infinite}
+@keyframes breath{50%{transform:translate(-50%,-50%) scale(1.25)}}
+#particles{position:absolute;inset:0;pointer-events:none}
+.p{position:absolute;animation:fly linear infinite;opacity:.7}
+@keyframes fly{0%{transform:translate3d(0,110vh,0) rotate(0);opacity:0}15%{opacity:.8}100%{transform:translate3d(var(--x),-15vh,0) rotate(540deg);opacity:0}}
+.balloon{position:absolute;width:65px;height:82px;border-radius:50% 50% 45% 45%;box-shadow:inset -12px -15px 20px #b7195350,0 15px 35px #a4134540;animation:balloon 6s ease-in-out infinite;z-index:2}
+.balloon:after{content:"";position:absolute;left:50%;top:80px;width:1px;height:170px;background:#fff9}
+@keyframes balloon{50%{transform:translateY(-28px) rotate(5deg)}}
+#app{position:relative;width:100%;min-height:100vh;z-index:5}
+.slide{position:relative;inset:auto;min-height:100vh;padding:50px 7%;display:flex;justify-content:center;align-items:center;overflow-y:auto}
+.slide{position:absolute;inset:0;padding:50px 7%;display:flex;justify-content:center;align-items:center;text-align:center;opacity:0;visibility:hidden;transform:translate3d(0,80px,0) scale(.85);transition:1s cubic-bezier(.16,1,.3,1)}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.content{max-width:900px;position:relative}
+h1,h2{font-family:"Great Vibes",cursive;text-shadow:0 8px 30px #a30b4c55}
+h1{font-size:clamp(68px,12vw,145px);line-height:.85}
+h2{font-size:clamp(48px,8vw,92px);margin-bottom:20px}
+p{font-size:16px;line-height:1.9;margin:10px 0}.eyebrow{text-transform:uppercase;letter-spacing:5px;font-size:11px;color:#fff}
+.card{background:#ffffff35;border:1px solid #fff8;border-radius:32px;padding:30px;backdrop-filter:blur(20px);box-shadow:0 30px 70px #9e174855,inset 0 1px #fff}
+.btn{border:0;background:white;color:#c01c59;border-radius:50px;padding:14px 28px;font-weight:700;cursor:pointer;box-shadow:0 12px 35px #9c104b55;transition:.3s}.btn:hover{transform:scale(1.08) translateY(-4px)}
+.nav{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:20}.nav button{width:46px;height:46px;border-radius:50%;border:1px solid #fff9;background:#ffffff30;color:white;font-size:22px;cursor:pointer;backdrop-filter:blur(10px)}
+.progress{position:fixed;top:22px;left:50%;transform:translateX(-50%);width:180px;height:5px;background:#fff6;border-radius:9px;z-index:20;overflow:hidden}.progress i{display:block;width:7%;height:100%;background:white;transition:.8s}
+.music{position:fixed;right:20px;top:18px;z-index:25;width:48px;height:48px;border-radius:50%;border:1px solid #fff9;background:#ffffff30;color:#fff;font-size:18px}
+.big{font-size:105px;filter:drop-shadow(0 15px 25px #a90e4e66);animation:float 3s ease-in-out infinite}@keyframes float{50%{transform:translateY(-18px) rotate(3deg) scale(1.08)}}
+
+/* ENVELOPE */
+.envelope{width:310px;height:205px;position:relative;margin:0 auto 30px;cursor:pointer;filter:drop-shadow(0 30px 35px #a5144e66);animation:envelope 3s ease-in-out infinite}
+@keyframes envelope{50%{transform:translateY(-12px) rotateX(4deg) rotateZ(-1deg)}}
+.envbody{position:absolute;inset:0;background:linear-gradient(145deg,#ff6b96,#e72d68);border-radius:12px}.flap{position:absolute;left:0;right:0;top:0;height:125px;background:#ff8eaa;clip-path:polygon(0 0,100% 0,50% 75%);z-index:4;border-radius:12px 12px 0 0;transform-origin:top;transition:1s}.letter{position:absolute;background:#fff;color:#a71a50;left:20px;right:20px;bottom:8px;height:165px;border-radius:8px;padding:25px;z-index:2;transition:1s}.seal{position:absolute;z-index:5;left:50%;top:55%;transform:translate(-50%,-50%);width:55px;height:55px;background:white;color:#e92e6a;border-radius:50%;display:grid;place-items:center;transition:.5s}.envelope.open .flap{transform:rotateX(180deg)}.envelope.open .letter{transform:translateY(-90px)}.envelope.open .seal{opacity:0}
+
+/* CAKE */
+.cakeScene{height:390px;width:430px;margin:auto;position:relative;transform-style:preserve-3d;animation:cakeFloat 4s ease-in-out infinite}@keyframes cakeFloat{50%{transform:translateY(-12px) rotateY(4deg)}}
+.cake{position:absolute;left:50%;bottom:35px;transform:translateX(-50%);width:310px;height:155px;background:linear-gradient(#ffb3c9,#f34d7d);border-radius:25px 25px 35px 35px;box-shadow:0 25px 35px #9c174c55,inset 0 10px 15px #fff5}
+.cake:before{content:"";position:absolute;left:0;right:0;top:25px;height:28px;background:#fff0f5;border-radius:50%;box-shadow:0 15px 0 #ff91ad,0 30px 0 #fff0f5}
+.cream{position:absolute;top:-28px;left:20px;right:20px;height:45px;background:#fff5fa;border-radius:50%;box-shadow:0 8px 12px #bd225033}
+.drip{position:absolute;top:5px;left:40px;width:30px;height:48px;border-radius:0 0 20px 20px;background:white;box-shadow:70px 0 white,140px 0 white,210px 0 white}
+.candle{position:absolute;width:16px;height:80px;bottom:175px;background:repeating-linear-gradient(45deg,#fff 0 8px,#ff477e 8px 16px);border-radius:8px;z-index:8;box-shadow:0 5px 10px #9c174c55}.c1{left:48%}.c2{left:38%;height:65px}.c3{left:58%;height:65px}
+.flame{position:absolute;width:22px;height:38px;left:50%;top:-34px;transform:translateX(-50%) rotate(45deg);background:linear-gradient(135deg,#fff,#ffd22e,#ff5a37);border-radius:50% 50% 50% 0;box-shadow:0 0 25px 8px #ffb52c99;animation:flame .35s ease-in-out infinite alternate}.flame.off{opacity:0;animation:none}
+@keyframes flame{to{transform:translateX(-50%) rotate(45deg) scale(.85) translateY(3px)}}
+.blowHint{margin-top:5px;color:#fff;font-size:13px}
+.mic{margin-top:10px}
+
+/* PHOTO */
+.photos{height:300px;width:720px;max-width:90vw;position:relative;margin:auto}.photo{position:absolute;width:180px;padding:9px 9px 27px;background:#fff;color:#9d2351;box-shadow:0 25px 45px #9c174c66;transition:1s}.photo img{width:100%;height:180px;object-fit:cover}.ph1{left:5%;top:45px;transform:rotate(-12deg)}.ph2{left:38%;top:0;transform:rotate(3deg) scale(1.08);z-index:2}.ph3{right:5%;top:55px;transform:rotate(11deg)}.photos:hover .ph1{transform:translate(-35px,10px) rotate(-20deg)}.photos:hover .ph2{transform:translateY(-20px) scale(1.12)}.photos:hover .ph3{transform:translate(35px,10px) rotate(20deg)}
+
+/* SIDE ORBS */
+.orb{position:absolute;border-radius:50%;background:#fff4;filter:blur(1px);animation:orb 7s ease-in-out infinite}.o1{width:90px;height:90px;left:4%;top:35%}.o2{width:45px;height:45px;right:8%;top:48%;animation-delay:-3s}.o3{width:65px;height:65px;left:16%;top:60%;animation-delay:-5s}@keyframes orb{50%{transform:translate(60px,-90px) scale(1.3);opacity:.4}}
+
+.burst{position:fixed;z-index:100;pointer-events:none;font-size:22px;transition:2s cubic-bezier(.1,.8,.2,1);left:50%;top:50%}
+@media(max-width:600px){.balloon{transform:scale(.65)}.cakeScene{transform:scale(.72);margin-top:-45px}.photos{transform:scale(.72);margin-top:-30px}.card{padding:22px 16px}p{font-size:14px}.progress{width:110px}}
+</style>
+</head>
+<body>
+<div id="world">
+<div class="glow"></div><div id="particles"></div>
+<div class="balloon b1"></div><div class="balloon b2"></div><div class="balloon b3"></div><div class="balloon b4"></div>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+</div>
+
+<div id="app">
+<div class="progress"><i id="bar"></i></div>
+<button class="music" id="musicBtn">🎵</button>
+
+<section class="slide active"><div class="content">
+<div class="envelope" id="env" onclick="openEnv()"><div class="letter"><b>FOR YOU 💗</b><p>A little something I made just for you on your special day.</p></div><div class="envbody"></div><div class="flap"></div><div class="seal">❤</div></div>
+<p class="eyebrow">A birthday story made especially for you</p><h1>Happy Birthday</h1><p>Are you ready to step into the little world I created just for you?</p><button class="btn" onclick="openEnv()">Buka suratnya 💌</button>
+</div></section>
+
+<section class="slide"><div class="content"><div class="big">🎈</div><p class="eyebrow">Welcome to your birthday</p><h2>About You 💗</h2><div class="card"><p>There are so many things I could say about you, but sometimes I still feel that words are not enough to explain how meaningful you have become in my life. We have never met each other in person, and yet, somehow, you have become someone very close to my heart. Our story may be different from other people's stories. We cannot simply meet whenever we miss each other, spend an afternoon together, or create memories side by side in the same place. But despite all of that, you have always found your own ways to make me feel remembered, cared for, and appreciated. You are a kind person, and I notice the little things you do. I notice your effort. I notice the time you give me, even when you are tired. I notice how you still try to make time for me in the middle of your daily responsibilities.</p><p>Maybe you do not always realize how much those little things mean to me. But I do. Thank you for being someone who has brought so many meaningful moments into my life. Thank you for your patience, your attention, your kindness, and for every effort you have made, even when things were not always easy. I hope you know that you are appreciated, not because you are perfect, but because you are you.</p></div></div></section>
+
+<section class="slide"><div class="content"><div class="big">💗</div><h2>Our Little Everyday Moments ☀️</h2><p>Some of my favorite memories with you are actually the simplest ones. The way you wake up and call me before starting your day. The way you go to work and then come back and call me again. Those little moments may look ordinary to someone else, but to me, they became a beautiful part of my everyday life. Sometimes we do not even need to talk about something important. Sometimes just hearing your voice, knowing how your day went, or simply spending a little time together is already enough to make an ordinary day feel different. I know you have your own responsibilities, your own tiredness, your own problems, and your own things to think about. That is why I appreciate every moment you choose to share with me. It is not about how long our conversations are. It is about the fact that, in the middle of your busy day, you still make room for me.</p><p>Those little calls, conversations, jokes, silences, and random moments have become memories that I treasure deeply. Maybe someday, when we look back at this chapter of our lives, we will realize that these simple moments were actually some of the most precious ones.</p></div></section>
+
+<section class="slide"><div class="content"><h2>The Little Things That Mean So Much 💗</h2><div class="card"><p>Sometimes, it is not the big things that mean the most. It is the little things. The way you call me when you wake up. The way you still make time for me before going to work. The way you call me again when you get home, even after a long and tiring day. We have never met in person, but somehow, you have still managed to make me feel close to you. Every call, every conversation, every random story, every “How was your day?”, and every moment you choose to spend with me has become something I treasure.</p><p>Maybe these things seem ordinary to you. Maybe they are just small parts of your everyday routine. But to me, they mean so much. I notice your efforts. I notice how you try to make time for me even when you are busy or tired. And I want you to know that I never take those little things for granted.</p><p>Thank you for letting me be a part of your everyday life. Thank you for every morning call, every after-work conversation, every laugh, every silly moment, and even the quiet moments when we simply stay on the call together.</p><p>We may not have met face to face yet, but the memories we have created are real and meaningful to me. Sometimes, love is not found in grand gestures. Sometimes, it is found in the little things someone does without even realizing how much they mean. And for me, those little things are some of the most beautiful parts of us. 💗</p></div></div></section>
+
+<section class="slide"><div class="content"><h2>The Difficult Days 🌧️</h2><div class="card"><p>I also want to be honest about something. Lately, things have not been easy for us. We have been arguing more often than before. Sometimes we stop talking for hours. Sometimes emotions become too strong, and instead of understanding each other, we end up misunderstanding each other even more. There are moments when I wish we could simply pause, take a breath, and remember that we are on the same side. I know that I am not always right. I know that I have things I need to improve too. Sometimes I may speak from my emotions instead of taking the time to understand yours. And I am sorry for the moments when my words or actions have made things harder.</p><p>I do not want our problems to become something that makes us forget all the good things we have shared. I hope that, as we grow, we can become more mature when facing difficult situations. I hope we can learn to communicate instead of staying silent for too long, listen instead of immediately defending ourselves, and solve problems instead of allowing them to become bigger.</p><p>We do not have to be perfect. I only hope that when things become difficult, we can choose patience, honesty, respect, and understanding. Because sometimes loving someone also means learning how to handle disagreements without losing kindness toward each other.</p></div></div></section>
+
+<section class="slide"><div class="content"><div class="big">🌷</div><h2>Distance & Our Differences 🌏</h2><p>There is another part of our story that makes everything more complicated. We come from different backgrounds. I am Muslim, while you are Buddhist. You are Chinese, and your family has hopes and expectations about the person you will eventually be with. I understand that family matters. I understand that parents have their own beliefs, hopes, traditions, and dreams for their children. I also understand that our differences are not something that can simply disappear because we care about each other. Sometimes, caring about someone means acknowledging reality instead of pretending that every obstacle is easy. Our distance is real. Our differences are real. The challenges from our families are real.</p><p>But so are the memories we have created, the effort we have given each other, and the feelings that have grown between us. I do not know exactly what the future has prepared for us. I cannot promise that everything will always be easy. But I hope that whatever happens, we will continue to treat each other with kindness and respect. For me, what matters is that the time we have shared has been meaningful. And even though we have never stood beside each other in the same place, you have still managed to leave a meaningful place in my heart.</p></div></section>
+
+<section class="slide"><div class="content"><h2>Let’s Take It One Step at a Time</h2><div class="card"><p>We don't have to have all the answers right now. We are both still learning, still growing, and still trying to understand each other. There will be good days and difficult days, moments when we feel close and moments when we need a little time to breathe. I know our journey is not always easy. There are many things we have to face, and sometimes it can feel overwhelming. But I don't want us to rush through everything.</p><p>Let's take it one step at a time. Let's learn to listen instead of assuming. Let's learn to talk instead of staying silent for too long. Let's learn to understand instead of immediately getting angry. Let's learn to apologize, forgive, and grow from the things we go through.</p><p>We don't need to be perfect. We just need to keep learning how to treat each other with kindness, patience, and understanding. Maybe we don't know exactly where this journey will take us, but for now, let's simply take the next step with care. 💗</p></div></div></section>
+
+<section class="slide"><div class="content"><h2>Little memories 📸</h2><p>📸 Little Photos of You</p><div class="photos"><div class="photo ph1"><img src="louis1.jpg"><b>SO CUTE:p</b></div><div class="photo ph2"><img src="louis2.jpg"><b>CUTE></b></div><div class="photo ph3"><img src="louis3.jpg"><b>CUTE<3</b></div></div></div></section>
+
+<section class="slide"><div class="content"><h2>And now...</h2><div class="cakeScene">
+<div class="candle c1"><div class="flame" id="f1"></div></div><div class="candle c2"><div class="flame" id="f2"></div></div><div class="candle c3"><div class="flame" id="f3"></div></div>
+<div class="cake"><div class="cream"></div><div class="drip"></div></div>
+</div><p class="blowHint">🕯️ Bring your mouth close to the microphone and blow out the candles, or press the button if a microphone is not available. 🎂</p><button class="btn mic" onclick="blow()">Tiup lilin ✨</button></div></section>
+
+<section class="slide"><div class="content"><div class="big">🎂</div><h2>Make a wish...</h2><div class="card"><p>Now, before you continue, there is one little birthday tradition waiting for you. Close your eyes for a moment. Take a deep breath. Think of something you truly wish for. It does not have to be something big. Maybe it is something you have been working hard for. Maybe it is something you have been quietly hoping for. Maybe it is simply a peaceful and happy year ahead. Whatever your wish is, I hope life brings you closer to it. And when you are ready... Make your wish. Then blow out the candles.</p><p>I hope this new chapter of your life brings you more reasons to smile, more opportunities to grow, more peaceful days, and more beautiful memories. Happy Birthday. 🎂</p></div></div></section>
+
+<section class="slide"><div class="content"><div class="big">🎁</div><h2>I Couldn't Get You a Real Gift</h2><div class="card"><p>So I made something I could give you right now. It may be simple, but I made it with my time, my thoughts, my prayers, and all the care I could put into it. I wish I could give you something special in person, something I could wrap beautifully and place in your hands. But even though I can't do that right now, I still wanted to give you something that comes from my heart.</p><p>I hope that when you see this, you smile. I hope you can feel the effort behind every little detail and know that this was made especially for you.</p><p>It may not be an expensive gift, but I hope its meaning is worth more than its price. 💗</p></div></div></section>
+
+<section class="slide"><div class="content"><h2>💗 If You Ever Feel Unsure...</h2><div class="card"><p>If one day you start to feel unsure about us, I hope you remember all the little moments we have shared. I know things have been difficult lately. We argue, misunderstand each other, and sometimes need time apart. But I hope we can learn to face these moments with more patience, understanding, and maturity.</p><p>We don't have to have all the answers right now. We can take things one step at a time, learn from our mistakes, and talk about the things that hurt us.</p><p>I just hope that, no matter how difficult things become, we can always choose kindness and respect for each other. 💗</p></div></div></section>
+
+<section class="slide"><div class="content"><div class="big">🤍</div><h2>My prayers for u</h2><p>On your birthday, I do not only wish you happiness. I wish you good health. I wish you peace of mind. I wish you strength when life becomes difficult. I wish that the things you are working hard for will slowly come closer to you. May your efforts be rewarded. May your work become easier. May your opportunities continue to grow.May your financial situation become more stable, and may your hard work bring better opportunities and prosperity into your life. And most importantly, I pray that you and your family will always be protected, healthy, and surrounded by good things.</p><p>May your parents and your entire family be given good health, long lives, peace, and many reasons to smile. I hope your family will always have enough strength to face every challenge together.</p><p>For you, I hope you become the person you dream of becoming. I hope you achieve the things you have been working toward.</p><p>And when life becomes difficult, I hope you remember that difficult seasons do not last forever.</p><p>May this new age bring you closer to the life you hope for.</p></div></section>
+
+<section class="slide"><div class="content"><h2>A Letter for You 💌</h2><div class="card"><p>Dear you, Happy Birthday. I do not know if I will ever find the perfect words to explain how much you mean to me, but I want to try anyway. Thank you for every effort you have made for me. Thank you for calling me after you wake up. Thank you for letting me be part of your ordinary days. Thank you for calling me after work. Thank you for every conversation, every laugh, every little update, and every moment when you chose to make time for me. I know our relationship has not always been easy.</p><p>Recently, we have faced many problems. We have argued, misunderstood each other, and sometimes spent hours without talking. There have been moments when both of us felt tired, confused, or unsure. But even through those difficult moments, I still believe that what we have shared is meaningful. I care about you deeply, and I genuinely want you to be happy and healthy. I hope that we can both become better at understanding each other. I hope we can learn how to communicate more calmly, apologize when we are wrong, listen when the other person is hurting, and solve our problems without forgetting the good things between us.</p><p>I know our differences and our circumstances make our journey complicated. We have different religions, different backgrounds, distance between us, and family expectations that we cannot simply ignore. I do not know exactly where life will take us. But for now, I want you to know that I am grateful for the time we have shared. You have given me many moments that I will always remember. And although I cannot give you an expensive present today, I hope this little creation reminds you that your birthday matters to me.</p><p>I hope this year is kinder to you. I hope you become healthier, happier, stronger, and closer to your dreams. I hope your work becomes more successful. I hope your finances become better. I hope your family remains healthy and is blessed with many more years together. And I hope that, whatever challenges come next, you will never forget how valuable your life and your future are. Thank you for being part of my story.</p></div></div></section>
+
+<section class="slide"><div class="content"><div class="big">💖</div><p class="eyebrow">This little world was made for you</p><h1>Happy Birthday</h1><h2>My Favorite Person</h2><p>Thank you for existing. ✨</p><button class="btn" onclick="finale()">I LOVE U SO MUCH</button></div></section>
+</div>
+
+<div class="nav"><button onclick="prev()">‹</button><button onclick="next()">›</button></div>
+<audio id="music" loop><source src="photograph.mp3" type="audio/mpeg"></audio>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')],bar=document.getElementById('bar');let idx=0;
+function show(n){n=(n+slides.length)%slides.length;slides[idx].classList.remove('active');idx=n;slides[idx].classList.add('active');bar.style.width=((idx+1)/slides.length*100)+'%'}
+function next(){show(idx+1)}function prev(){show(idx-1)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
+let sx=0;document.addEventListener('touchstart',e=>sx=e.touches[0].clientX);document.addEventListener('touchend',e=>{let x=e.changedTouches[0].clientX;if(sx-x>50)next();if(x-sx>50)prev()});
+function openEnv(){document.getElementById('env').classList.add('open');setTimeout(next,1300)}
+const bg=document.getElementById('particles');setInterval(()=>{let p=document.createElement('div');p.className='p';p.textContent=['💗','💕','🌸','✨','♡','🎀'][Math.floor(Math.random()*6)];p.style.left=Math.random()*100+'%';p.style.setProperty('--x',(Math.random()*240-120)+'px');p.style.fontSize=12+Math.random()*24+'px';p.style.animationDuration=5+Math.random()*8+'s';bg.appendChild(p);setTimeout(()=>p.remove(),14000)},350);
+
+const music=document.getElementById('music');let playing=false;musicBtn.onclick=()=>{if(playing){music.pause();playing=false;musicBtn.textContent='🎵'}else{music.play().catch(()=>{});playing=true;musicBtn.textContent='🔊'}};
+
+let blown=false;
+function blow(){if(blown)return;blown=true;['f1','f2','f3'].forEach(id=>document.getElementById(id).classList.add('off'));burst(70);setTimeout(next,1700)}
+let listening=false;
+async function listenBlow(){try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});const ac=new AudioContext(),src=ac.createMediaStreamSource(stream),an=ac.createAnalyser();an.fftSize=256;src.connect(an);const data=new Uint8Array(an.frequencyBinCount);listening=true;function check(){if(!listening)return;an.getByteFrequencyData(data);let avg=data.reduce((a,b)=>a+b,0)/data.length;if(avg>42){blow();stream.getTracks().forEach(t=>t.stop());listening=false;return}requestAnimationFrame(check)}check()}catch(e){}}
+setTimeout(listenBlow,1800);
+
+function burst(n){for(let i=0;i<n;i++){let e=document.createElement('div');e.className='burst';e.textContent=['💗','💖','✨','🌸','🎀','🎉','💕'][Math.floor(Math.random()*7)];e.style.fontSize=12+Math.random()*28+'px';document.body.appendChild(e);let a=Math.random()*Math.PI*2,r=120+Math.random()*650;requestAnimationFrame(()=>{e.style.transform=`translate(${Math.cos(a)*r}px,${Math.sin(a)*r}px) rotate(${Math.random()*720}deg) scale(${.7+Math.random()})`;e.style.opacity=0});setTimeout(()=>e.remove(),2100)}}
+function finale(){burst(220)}
+</script>
+</body>
+</html>
